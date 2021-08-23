@@ -1,7 +1,7 @@
 # kaboomjs-space-invanders
 > Upadated project based on Ania Kubów source, but this one show you messages if you won and allow you to keep playing if you lose
 
-##
+## Featuting
 - Game is fullscreen mode
 - addLevel section allow to add the number of space invaders, in this case 3 rowa with 17 aliens that at the end means 51 (defined on line 20)
 
