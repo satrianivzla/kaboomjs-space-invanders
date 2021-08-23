@@ -1,3 +1,4 @@
+// Basic configuration to get game working in fullscreen mode
 kaboom({
   global: true,
   fullscreen: true,
@@ -17,7 +18,9 @@ scene('game', () => {
   let CURRENT_SPEED = INVADER_SPEED
 
   layers(['obj', 'ui'], 'obj')
-
+// Here you defined how many aliens will be in the screen
+// Then for now are 3 rows with 17 aliens each one
+// and you have 51 aliens ready to die!
   addLevel(
     [
       '!^^^^^^^^^^^^^^^^^   &',
@@ -165,6 +168,8 @@ scene('game', () => {
     score.value++
     score.text = score.value
 	// Check if player has won
+	// 51 is the number of aliens defined in
+	// the addlevel section in the line 24
 		if (score.value == 51) {
 	      go('winner', score.value)		
 		}	
@@ -198,7 +203,8 @@ scene('game', () => {
 			go("game_over", score.value);
 		}
 	})
-
+    // Added button suffort but I haven't added 
+	// to the project yet
 	function addButton(txt, p, f) {
 
 		const bg = add([
@@ -231,6 +237,9 @@ scene('game', () => {
 	
 })
 
+// Game Over screen message
+// should have a delay timer instead
+// the keypress event 
 scene('game_over', (score) => {
 
  	add([
@@ -245,6 +254,11 @@ scene('game_over', (score) => {
  
  })
  
+// Here is the screen where you must show
+// How many aliens were killed by the player
+// in a complex scenario here must add the
+// top 10 players that spend less time to
+// finish this basic level for example
 scene('scored', (score) => {
  add([
     text("Your Score: " + score, 24),
@@ -258,6 +272,10 @@ scene('scored', (score) => {
 
 }) 
 
+// Finished level screen message
+// if you added a new level you have 
+// to create a scene with a process to 
+// to allow to play it
 scene('winner', (score) => {
 	add([
 		text("You have finished this Level", 24),
@@ -269,6 +287,8 @@ scene('winner', (score) => {
 	});	
 }) 
 
+// Here is the message to keep playing must be
+// a question based option 
 scene('continue_playing', (score) => {
  	add([
 		text("Pulse spacebar to play next level", 24),
@@ -280,5 +300,5 @@ scene('continue_playing', (score) => {
 	  go('game');
 	});	 
  }) 
-  
+// Get ready to play!  
 start('game')
