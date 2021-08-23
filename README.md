@@ -18,7 +18,8 @@ Upadated project based on Ania Kubów source, but this one show you messages if 
 - Add new level
 - Update keypress event for a timer lapse option
 
-This project is based in the explanations made in the online course published by Ania Kubów. Please check out her channel for more: https://www.youtube.com/c/AniaKubów
+## Kudos to Ania Kubów
+This project is based in the explanations made in the online course published by [Ania Kubów](https://www.youtube.com/c/AniaKubów "Ania Kubów Youtube"), please check out her channel for more.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
