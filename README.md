@@ -22,7 +22,7 @@
 - Update keypress event for a timer lapse option
 
 ## Kudos to Ania Kubów
-This project is based in the explanations made in the online course published by [Ania Kubów](https://www.youtube.com/c/AniaKubów "Ania Kubów Youtube"), please check out her channel for more.
+This project is based in the explanations made in the online course published by [Ania Kubów](https://www.youtube.com/c/AniaKubów "Ania Kubów Youtube"), please check out her youtube channel for more.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
