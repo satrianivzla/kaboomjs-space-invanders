@@ -28,8 +28,8 @@
 This project is based in the explanations made in the online course published by [Ania Kubów](https://www.youtube.com/c/AniaKubów "Ania Kubów Youtube"), please check out her youtube channel for more.
 
 ## More info about KaboomJS
- **[KaboomJS Website](https://kaboomjs.com/  "kaboom")** 
- **[KaboomJS Github](https://github.com/replit/kaboom "kaboom")** 
+ **[Ofiicial Website](https://kaboomjs.com/  "kaboom")** | 
+ **[Github](https://github.com/replit/kaboom "kaboom")** 
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
