@@ -1,4 +1,7 @@
 # kaboomjs-space-invanders
+
+![Screen](https://github.com/satrianivzla/kaboomjs-space-invanders/blob/main/screen.jpg)
+
 > Upadated project based on Ania Kubów source, but this one show you messages if you won and allow you to keep playing if you lose
 
 ## Updates
