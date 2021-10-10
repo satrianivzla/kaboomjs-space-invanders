@@ -1,4 +1,7 @@
-# kaboomjs-space-invanders
+# Space Invanders build with KaboomJS 
+
+ **[kaboom](https://kaboomjs.com/  "kaboom")** is a JavaScript library that is a great option for Gaming plataforms
+
 
 ![Screen](https://github.com/satrianivzla/kaboomjs-space-invanders/blob/main/screen.jpg)
 
