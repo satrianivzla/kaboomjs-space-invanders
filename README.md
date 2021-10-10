@@ -2,7 +2,7 @@
 
 ![Screen](https://github.com/satrianivzla/kaboomjs-space-invanders/blob/main/screen.jpg)
 
-> Updated project based on **Ania Kubów** source, but this one show you messages if you won and allow you to keep playing if you lose
+> Updated project based on [**Ania Kubów**](https://github.com/kubowania/space-invaders-kaboom.js"Ania Kubów Original Source")  source, but this one show you messages if you won and allow you to keep playing if you lose
 
 ## Updates
 - Game is fullscreen mode
