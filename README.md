@@ -1,6 +1,6 @@
 # Space Invanders build with KaboomJS 
 
- **[kaboom](https://kaboomjs.com/  "kaboom")** is a JavaScript library that is a great option for Gaming plataforms
+ **[Kaboom](https://kaboomjs.com/  "kaboom")** is a JavaScript library that is a great option for Gaming plataforms
 
 
 ![Screen](https://github.com/satrianivzla/kaboomjs-space-invanders/blob/main/screen.jpg)
@@ -9,11 +9,11 @@
 
 ## Updates
 - Game is fullscreen mode
-- addLevel section allow to add the number of space invaders, in this case 3 rowa with 17 aliens that at the end means 51 (defined on line 20)
+- addLevel section allow to add the number of space invaders, in this case 3 rows with 17 aliens each one that at the end means 51 aliens that will attack you. (defined on line 20)
 
 ## Game behaviours: 
 - Lose option was defined by the timer at line 119
-- Winner option was defined by the aliens died that in this caae must be 51  is defined at line 173 and go into scene continue_playing at line 290
+- Winner option was defined by the aliens died that in this caae must be 51 that it was defined at line 173 and go into scene continue_playing at line 290
 
 ## Scenes 
 - when game is over message is defined at line 243, this should be updated with a delay timer option instead of the keypress event that I added for now
@@ -34,3 +34,6 @@ This project is based in the explanations made in the online course published by
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Last update
+October 16, 2021
