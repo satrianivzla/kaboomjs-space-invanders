@@ -53,10 +53,25 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Language-prefixed routes
+$route['(en|es)/(:any)'] = '$2';
+$route['(en|es)'] = $route['default_controller'];
+
+
 /*
 | -------------------------------------------------------------------------
-| Custom Routes for Ion Auth
+| Custom Routes for Ion Auth and Admin
 | -------------------------------------------------------------------------
 */
 $route['auth'] = 'auth';
 $route['auth/(:any)'] = 'auth/$1';
+$route['admin'] = 'admin/posts'; // Default admin route
+$route['admin/(:any)'] = 'admin/$1';
+$route['admin/(:any)/(:any)'] = 'admin/$1/$2';
+
+// Sitemap routes
+$route['sitemap\.xml'] = 'sitemap';
+$route['sitemap/posts\.xml'] = 'sitemap/posts';
+$route['sitemap/categories\.xml'] = 'sitemap/categories';
+$route['sitemap/tags\.xml'] = 'sitemap/tags';
+$route['sitemap/images\.xml'] = 'sitemap/images';

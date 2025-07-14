@@ -13,6 +13,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Ad Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Advertisement</h5>
+                <div class="card-body">
+                    <?php echo display_ad('sidebar'); ?>
+                </div>
+            </div>
             <!-- Categories Widget -->
             <div class="card my-4">
                 <h5 class="card-header">Categories</h5>

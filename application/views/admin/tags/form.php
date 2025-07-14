@@ -11,8 +11,12 @@
                 <div class="card-body">
                     <?php echo form_open(isset($tag) ? 'admin/tags/update/' . $tag['id'] : 'admin/tags/store'); ?>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Tag Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name', isset($tag) ? $tag['name'] : ''); ?>" required>
+                            <label for="name_en" class="form-label">Tag Name (EN)</label>
+                            <input type="text" class="form-control" id="name_en" name="name_en" value="<?php echo set_value('name_en', isset($tag) ? $tag['name_en'] : ''); ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name_es" class="form-label">Tag Name (ES)</label>
+                            <input type="text" class="form-control" id="name_es" name="name_es" value="<?php echo set_value('name_es', isset($tag) ? $tag['name_es'] : ''); ?>">
                         </div>
                         <button type="submit" class="btn btn-primary">Save Tag</button>
                         <a href="<?php echo site_url('admin/tags'); ?>" class="btn btn-secondary">Cancel</a>

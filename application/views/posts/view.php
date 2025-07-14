@@ -2,7 +2,7 @@
 
 <!-- Post Content -->
 <article>
-    <h1 class="mt-4"><?php echo html_escape($post['title']); ?></h1>
+    <h1 class="mt-4"><?php echo html_escape($post['title_' . $current_lang]); ?></h1>
     <p class="lead">
         by <a href="#"><?php echo html_escape($post['first_name'] . ' ' . $post['last_name']); ?></a>
     </p>
@@ -10,11 +10,11 @@
     <p>Posted on <?php echo date('F j, Y, g:i a', strtotime($post['created_at'])); ?></p>
     <hr>
     <?php if ($post['featured_image']): ?>
-        <img class="img-fluid rounded" src="<?php echo base_url('uploads/images/' . $post['featured_image']); ?>" alt="<?php echo html_escape($post['title']); ?>">
+        <img class="img-fluid rounded" src="<?php echo base_url('uploads/images/' . $post['featured_image']); ?>" alt="<?php echo html_escape($post['title_en']); ?>">
         <hr>
     <?php endif; ?>
 
-    <?php echo $post['content']; ?>
+    <?php echo $post['content_' . $current_lang]; ?>
 </article>
 
 <hr>

@@ -53,22 +53,25 @@ class Posts extends CI_Controller {
      */
     public function store()
     {
-        $this->form_validation->set_rules('title', 'Title', 'required|trim');
-        $this->form_validation->set_rules('content', 'Content', 'trim');
+        $this->form_validation->set_rules('title_en', 'English Title', 'required|trim');
         $this->form_validation->set_rules('status', 'Status', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->create();
         } else {
-            $slug = url_title($this->input->post('title'), 'dash', TRUE);
+            $slug = url_title($this->input->post('title_en'), 'dash', TRUE);
 
             $post_data = [
                 'author_id' => $this->ion_auth->user()->row()->id,
-                'title' => $this->input->post('title'),
+                'title_en' => $this->input->post('title_en'),
+                'title_es' => $this->input->post('title_es'),
                 'slug' => $slug,
-                'content' => $this->input->post('content'),
-                'seo_title' => $this->input->post('seo_title'),
-                'seo_description' => $this->input->post('seo_description'),
+                'content_en' => $this->input->post('content_en'),
+                'content_es' => $this->input->post('content_es'),
+                'seo_title_en' => $this->input->post('seo_title_en'),
+                'seo_title_es' => $this->input->post('seo_title_es'),
+                'seo_description_en' => $this->input->post('seo_description_en'),
+                'seo_description_es' => $this->input->post('seo_description_es'),
                 'status' => $this->input->post('status'),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -172,21 +175,24 @@ class Posts extends CI_Controller {
      */
     public function update($id)
     {
-        $this->form_validation->set_rules('title', 'Title', 'required|trim');
-        $this->form_validation->set_rules('content', 'Content', 'trim');
+        $this->form_validation->set_rules('title_en', 'English Title', 'required|trim');
         $this->form_validation->set_rules('status', 'Status', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->edit($id);
         } else {
-            $slug = url_title($this->input->post('title'), 'dash', TRUE);
+            $slug = url_title($this->input->post('title_en'), 'dash', TRUE);
 
             $post_data = [
-                'title' => $this->input->post('title'),
+                'title_en' => $this->input->post('title_en'),
+                'title_es' => $this->input->post('title_es'),
                 'slug' => $slug,
-                'content' => $this->input->post('content'),
-                'seo_title' => $this->input->post('seo_title'),
-                'seo_description' => $this->input->post('seo_description'),
+                'content_en' => $this->input->post('content_en'),
+                'content_es' => $this->input->post('content_es'),
+                'seo_title_en' => $this->input->post('seo_title_en'),
+                'seo_title_es' => $this->input->post('seo_title_es'),
+                'seo_description_en' => $this->input->post('seo_description_en'),
+                'seo_description_es' => $this->input->post('seo_description_es'),
                 'status' => $this->input->post('status'),
                 'updated_at' => date('Y-m-d H:i:s')
             ];

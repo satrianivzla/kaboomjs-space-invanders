@@ -150,9 +150,9 @@
                 <?php foreach ($daily_posts as $post): ?>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo html_escape($post['title']); ?></h5>
-                            <p class="card-text"><?php echo nl2br(html_escape($post['content'])); ?></p>
-                            <a href="<?php echo site_url('posts/view/' . $post['slug']); ?>" class="btn btn-sm btn-outline-primary">View Details</a>
+                            <h5 class="card-title"><?php echo html_escape($post['title_' . $current_lang]); ?></h5>
+                            <p class="card-text"><?php echo word_limiter(strip_tags($post['content_' . $current_lang]), 40); ?></p>
+                            <a href="<?php echo site_url($current_lang . '/posts/view/' . $post['slug']); ?>" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
                             Posted by <?php echo html_escape($post['first_name'] . ' ' . $post['last_name']); ?>

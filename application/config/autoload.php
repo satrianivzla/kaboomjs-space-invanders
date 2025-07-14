@@ -32,7 +32,7 @@ $autoload['drivers'] = array();
 //  Auto-load Helper Files
 // -------------------------------------------------------------------
 // Added 'url' for redirects and links.
-$autoload['helper'] = array('url', 'form', 'html');
+$autoload['helper'] = array('url', 'form', 'html', 'text', 'advertisement');
 
 
 // -------------------------------------------------------------------

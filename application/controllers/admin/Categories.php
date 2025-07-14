@@ -36,13 +36,14 @@ class Categories extends CI_Controller {
 
     public function store()
     {
-        $this->form_validation->set_rules('name', 'Name', 'required|trim|is_unique[categories.name]');
+        $this->form_validation->set_rules('name_en', 'English Name', 'required|trim|is_unique[categories.name_en]');
         if ($this->form_validation->run() === FALSE) {
             $this->create();
         } else {
-            $slug = url_title($this->input->post('name'), 'dash', TRUE);
+            $slug = url_title($this->input->post('name_en'), 'dash', TRUE);
             $data = [
-                'name' => $this->input->post('name'),
+                'name_en' => $this->input->post('name_en'),
+                'name_es' => $this->input->post('name_es'),
                 'slug' => $slug
             ];
             if ($this->category_model->create_category($data)) {
@@ -69,13 +70,14 @@ class Categories extends CI_Controller {
 
     public function update($id)
     {
-        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('name_en', 'English Name', 'required|trim');
         if ($this->form_validation->run() === FALSE) {
             $this->edit($id);
         } else {
-            $slug = url_title($this->input->post('name'), 'dash', TRUE);
+            $slug = url_title($this->input->post('name_en'), 'dash', TRUE);
             $data = [
-                'name' => $this->input->post('name'),
+                'name_en' => $this->input->post('name_en'),
+                'name_es' => $this->input->post('name_es'),
                 'slug' => $slug
             ];
             if ($this->category_model->update_category($id, $data)) {
