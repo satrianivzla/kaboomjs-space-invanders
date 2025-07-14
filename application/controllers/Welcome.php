@@ -27,28 +27,20 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
-		else
-		{
-			// User is logged in, proceed to show the anniversaries
-			$data['anniversaries'] = $this->anniversary_model->get_all_anniversaries();
-			$data['title'] = "Music Anniversaries";
+		// The main page is now public, no login required.
+		// We will show a list of posts from our database.
+		$this->load->model('post_model');
 
-			// Get user info to display in the view
+		$data['title'] = "JulesBlog - Home";
+		$data['posts'] = $this->post_model->get_published_posts(); // We will create this method
+
+		// We still need user data for the navbar (Login/Logout button)
+		if ($this->ion_auth->logged_in())
+		{
 			$data['user'] = $this->ion_auth->user()->row();
-
-			if (empty($data['anniversaries'])) {
-				log_message('info', 'Welcome_controller: No anniversaries returned from model for the main page.');
-			} else {
-				log_message('info', 'Welcome_controller: Found ' . count($data['anniversaries']) . ' anniversaries.');
-			}
-
-			$this->load->view('welcome_message', $data);
 		}
+
+		$this->load->view('welcome_message', $data);
 	}
 }
 ?>
