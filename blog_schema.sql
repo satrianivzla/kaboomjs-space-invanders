@@ -71,9 +71,21 @@ CREATE TABLE `post_tags` (
 -- Default Data (Optional)
 --
 INSERT INTO `categories` (`name`, `slug`) VALUES
-('Uncategorized', 'uncategorized'),
-('News', 'news'),
-('Album Reviews', 'album-reviews');
+('Nacimientos', 'nacimientos'),
+('Fallecimientos', 'fallecimientos'),
+('Relaciones de Parejas', 'relaciones-de-parejas'),
+('Homenajes', 'homenajes'),
+('Conciertos', 'conciertos'),
+('Radio', 'radio'),
+('TV', 'tv'),
+('Audiciones', 'audiciones'),
+('Grabaciones de Discos', 'grabaciones-de-discos'),
+('Formaciones', 'formaciones'),
+('Lanzamientos', 'lanzamientos'),
+('Billboard Charts', 'billboard-charts'),
+('Peliculas', 'peliculas'),
+('Separaciones', 'separaciones'),
+('Miscelaneas', 'miscelaneas');
 
 INSERT INTO `tags` (`name`, `slug`) VALUES
 ('Metal', 'metal'),

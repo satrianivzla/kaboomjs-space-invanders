@@ -130,23 +130,36 @@
 			</div>
 		<?php endif; ?>
 
-		<?php if (!empty($posts)): ?>
-			<?php foreach ($posts as $post): ?>
-				<div class="card mb-4">
-					<?php if ($post['featured_image']): ?>
-						<img src="<?php echo base_url('uploads/images/' . $post['featured_image']); ?>" class="card-img-top" alt="<?php echo html_escape($post['title']); ?>">
-					<?php endif; ?>
-					<div class="card-body">
-						<h2 class="card-title"><?php echo html_escape($post['title']); ?></h2>
-						<p class="card-text"><?php echo word_limiter(strip_tags($post['content']), 40); ?></p>
-						<a href="<?php echo site_url('posts/view/' . $post['slug']); ?>" class="btn btn-primary">Read More &rarr;</a>
-					</div>
-					<div class="card-footer text-muted">
-						Posted on <?php echo date('F j, Y', strtotime($post['created_at'])); ?> by
-						<a href="#"><?php echo html_escape($post['first_name'] . ' ' . $post['last_name']); ?></a>
-					</div>
-				</div>
-			<?php endforeach; ?>
+		<?php
+        $grouped_posts = [];
+        if (!empty($posts)) {
+            foreach ($posts as $post) {
+                $date = date('Y-m-d', strtotime($post['created_at']));
+                if (!isset($grouped_posts[$date])) {
+                    $grouped_posts[$date] = [];
+                }
+                $grouped_posts[$date][] = $post;
+            }
+        }
+        ?>
+
+        <?php if (!empty($grouped_posts)): ?>
+            <?php foreach ($grouped_posts as $date => $daily_posts): ?>
+                <h2 class="mt-5 mb-3">Events for <?php echo date('F j, Y', strtotime($date)); ?></h2>
+                <hr>
+                <?php foreach ($daily_posts as $post): ?>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo html_escape($post['title']); ?></h5>
+                            <p class="card-text"><?php echo nl2br(html_escape($post['content'])); ?></p>
+                            <a href="<?php echo site_url('posts/view/' . $post['slug']); ?>" class="btn btn-sm btn-outline-primary">View Details</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted by <?php echo html_escape($post['first_name'] . ' ' . $post['last_name']); ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
 		<?php elseif (!isset($error_message)): ?>
 			<div class="alert alert-info" role="alert">
 				No anniversaries found or could not be retrieved at this time. The parsing logic in the model might need adjustment based on the blog's current HTML structure.

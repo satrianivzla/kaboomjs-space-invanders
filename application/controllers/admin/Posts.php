@@ -76,12 +76,24 @@ class Posts extends CI_Controller {
 
             // Handle file upload and WebP conversion
             if (!empty($_FILES['featured_image']['name'])) {
-                $upload_path = './uploads/images/';
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                $upload_path = "./uploads/images/{$year}/{$month}/{$day}/";
                 if (!is_dir($upload_path)) {
                     mkdir($upload_path, 0777, TRUE);
                 }
 
+                // Find the next available filename
+                $i = 1;
+                $base_filename = "{$year}-{$month}-{$day}";
+                $new_filename = $base_filename;
+                while (file_exists($upload_path . $new_filename . '.webp')) {
+                    $new_filename = $base_filename . '-' . str_pad($i++, 4, '0', STR_PAD_LEFT);
+                }
+
                 $config['upload_path'] = $upload_path;
+                $config['file_name'] = $new_filename; // Set the filename before upload
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['encrypt_name'] = TRUE;
 
@@ -182,12 +194,23 @@ class Posts extends CI_Controller {
             // Handle file upload
             if (!empty($_FILES['featured_image']['name'])) {
                 // Same upload and WebP conversion logic as store()
-                $upload_path = './uploads/images/';
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                $upload_path = "./uploads/images/{$year}/{$month}/{$day}/";
                 if (!is_dir($upload_path)) {
                     mkdir($upload_path, 0777, TRUE);
                 }
 
+                $i = 1;
+                $base_filename = "{$year}-{$month}-{$day}";
+                $new_filename = $base_filename;
+                while (file_exists($upload_path . $new_filename . '.webp')) {
+                    $new_filename = $base_filename . '-' . str_pad($i++, 4, '0', STR_PAD_LEFT);
+                }
+
                 $config['upload_path'] = $upload_path;
+                $config['file_name'] = $new_filename;
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['encrypt_name'] = TRUE;
 
