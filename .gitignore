@@ -1,10 +1,10 @@
 # CodeIgniter system and most application files
 system/
-application/config/
-application/core/
-application/helpers/
-application/language/
-application/libraries/
+# application/config/ # Un-ignoring for Ion Auth
+# application/core/
+# application/helpers/
+# application/language/ # Un-ignoring for Ion Auth
+# application/libraries/ # Un-ignoring for Ion Auth
 application/third_party/
 
 # Composer dependencies

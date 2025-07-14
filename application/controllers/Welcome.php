@@ -21,24 +21,34 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('anniversary_model');
-		$this->load->helper('url');
+		// Helpers and libraries are now autoloaded, so we can remove manual loads here
+		// if they were present. 'ion_auth' library, 'url' and 'form' helpers are key.
 	}
 
 	public function index()
 	{
-		$data['anniversaries'] = $this->anniversary_model->get_all_anniversaries();
-		$data['title'] = "Music Anniversaries"; // You can pass a title to the view
-
-		// Basic check for debugging - will remove or refine later
-		if (empty($data['anniversaries'])) {
-			log_message('info', 'Welcome_controller: No anniversaries returned from model for the main page.');
-			// Optionally, you could set a message for the view
-			// $data['error_message'] = "Could not retrieve anniversary data at this time.";
-		} else {
-			log_message('info', 'Welcome_controller: Found ' . count($data['anniversaries']) . ' anniversaries.');
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
 		}
+		else
+		{
+			// User is logged in, proceed to show the anniversaries
+			$data['anniversaries'] = $this->anniversary_model->get_all_anniversaries();
+			$data['title'] = "Music Anniversaries";
 
-		$this->load->view('welcome_message', $data);
+			// Get user info to display in the view
+			$data['user'] = $this->ion_auth->user()->row();
+
+			if (empty($data['anniversaries'])) {
+				log_message('info', 'Welcome_controller: No anniversaries returned from model for the main page.');
+			} else {
+				log_message('info', 'Welcome_controller: Found ' . count($data['anniversaries']) . ' anniversaries.');
+			}
+
+			$this->load->view('welcome_message', $data);
+		}
 	}
 }
 ?>

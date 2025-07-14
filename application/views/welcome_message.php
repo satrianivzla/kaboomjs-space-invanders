@@ -83,16 +83,33 @@
 <div id="container" class="container">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Music Anniversaries</a>
+			<a class="navbar-brand" href="<?php echo base_url(); ?>">Music Anniversaries</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>">Home</a>
 					</li>
-					<!-- Add more nav items here if needed -->
+				</ul>
+				<ul class="navbar-nav">
+					<?php if (isset($user)): ?>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<?php echo html_escape($user->first_name . ' ' . $user->last_name); ?>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="<?php echo site_url('auth/change_password'); ?>">Change Password</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('auth/logout'); ?>">Logout</a></li>
+							</ul>
+						</li>
+					<?php else: ?>
+						<li class="nav-item">
+							<a class="nav-link" href="<?php echo site_url('auth/login'); ?>">Login</a>
+						</li>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
@@ -100,6 +117,12 @@
 
 	<div id="body">
 		<h1><?php echo isset($title) ? $title : 'Music Anniversaries Blog'; ?></h1>
+
+		<?php if (isset($message)): // Ion auth uses 'message' for notices ?>
+			<div class="alert alert-info" role="alert">
+				<?php echo $message; ?>
+			</div>
+		<?php endif; ?>
 
 		<?php if (isset($error_message)): ?>
 			<div class="alert alert-danger" role="alert">
@@ -113,7 +136,6 @@
 				<?php foreach ($anniversaries as $item): ?>
 					<li class="list-group-item">
 						<?php echo html_escape($item['raw_text']); ?>
-						<?php // Later, we can add more structured data like 'date_event', 'description' if parsed ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>
