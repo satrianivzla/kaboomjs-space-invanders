@@ -33,7 +33,8 @@ class Post_model extends CI_Model {
         $this->db->insert('posts', $data);
         $post_id = $this->db->insert_id();
 
-        // Insert categories
+        if ($post_id) {
+            // Insert categories
         if (!empty($categories)) {
             $cat_batch = [];
             foreach ($categories as $category_id) {

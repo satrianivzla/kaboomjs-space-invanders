@@ -9,7 +9,8 @@ class Category_model extends CI_Model {
     }
 
     public function create_category($data) {
-        return $this->db->insert('categories', $data);
+        $this->db->insert('categories', $data);
+        return $this->db->insert_id();
     }
 
     public function get_category($id) {

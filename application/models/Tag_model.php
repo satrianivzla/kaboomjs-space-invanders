@@ -9,7 +9,8 @@ class Tag_model extends CI_Model {
     }
 
     public function create_tag($data) {
-        return $this->db->insert('tags', $data);
+        $this->db->insert('tags', $data);
+        return $this->db->insert_id();
     }
 
     public function get_tag($id) {

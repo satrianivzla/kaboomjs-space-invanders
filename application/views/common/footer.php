@@ -61,5 +61,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js'); ?>"></script>
 
+<!-- WhatsApp floating button -->
+<style>
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+.whatsapp-float:hover {
+    color: #FFF;
+}
+.my-float {
+    margin-top: 16px;
+}
+</style>
+<a href="https://wa.me/<?php echo $this->config->item('whatsapp_number'); ?>" class="whatsapp-float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i> <!-- Font Awesome icon -->
+</a>
+
 </body>
 </html>

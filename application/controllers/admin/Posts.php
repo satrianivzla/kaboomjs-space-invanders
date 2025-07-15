@@ -7,7 +7,8 @@ class Posts extends CI_Controller {
     {
         parent::__construct();
         // Load necessary models, libraries, helpers
-        $this->load->model('post_model'); // We will create this model soon
+        $this->load->model('post_model');
+        $this->load->model('audit_model');
         $this->load->library('form_validation');
         // Autoloading should handle ion_auth, database, session, url, etc.
 
@@ -136,7 +137,9 @@ class Posts extends CI_Controller {
             $tags_string = $this->input->post('tags');
             $tags = !empty($tags_string) ? array_map('trim', explode(',', $tags_string)) : [];
 
-            if ($this->post_model->create_post($post_data, $categories, $tags)) {
+            $post_id = $this->post_model->create_post($post_data, $categories, $tags);
+            if ($post_id) {
+                $this->audit_model->log_action('created_post', $post_id, 'Title: ' . $post_data['title_en']);
                 $this->session->set_flashdata('message', 'Post created successfully.');
                 redirect('admin/posts');
             } else {
@@ -255,6 +258,7 @@ class Posts extends CI_Controller {
             $tags = !empty($tags_string) ? array_map('trim', explode(',', $tags_string)) : [];
 
             if ($this->post_model->update_post($id, $post_data, $categories, $tags)) {
+                $this->audit_model->log_action('updated_post', $id, 'Title: ' . $post_data['title_en']);
                 $this->session->set_flashdata('message', 'Post updated successfully.');
                 redirect('admin/posts');
             } else {
@@ -269,7 +273,9 @@ class Posts extends CI_Controller {
      */
     public function delete($id)
     {
+        $post = $this->post_model->get_post($id); // Get post details before deleting
         if ($this->post_model->delete_post($id)) {
+            $this->audit_model->log_action('deleted_post', $id, 'Title: ' . $post['title_en']);
             $this->session->set_flashdata('message', 'Post deleted successfully.');
         } else {
             $this->session->set_flashdata('error', 'Error deleting post.');

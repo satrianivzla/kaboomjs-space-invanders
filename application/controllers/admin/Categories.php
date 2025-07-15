@@ -7,6 +7,7 @@ class Categories extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('category_model');
+        $this->load->model('audit_model');
         $this->load->library('form_validation');
 
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
@@ -46,7 +47,9 @@ class Categories extends CI_Controller {
                 'name_es' => $this->input->post('name_es'),
                 'slug' => $slug
             ];
-            if ($this->category_model->create_category($data)) {
+            $category_id = $this->category_model->create_category($data);
+            if ($category_id) {
+                $this->audit_model->log_action('created_category', $category_id, 'Name: ' . $data['name_en']);
                 $this->session->set_flashdata('message', 'Category created successfully.');
                 redirect('admin/categories');
             } else {
@@ -81,6 +84,7 @@ class Categories extends CI_Controller {
                 'slug' => $slug
             ];
             if ($this->category_model->update_category($id, $data)) {
+                $this->audit_model->log_action('updated_category', $id, 'Name: ' . $data['name_en']);
                 $this->session->set_flashdata('message', 'Category updated successfully.');
                 redirect('admin/categories');
             } else {
@@ -92,7 +96,9 @@ class Categories extends CI_Controller {
 
     public function delete($id)
     {
+        $category = $this->category_model->get_category($id);
         if ($this->category_model->delete_category($id)) {
+            $this->audit_model->log_action('deleted_category', $id, 'Name: ' . $category['name_en']);
             $this->session->set_flashdata('message', 'Category deleted successfully.');
         } else {
             $this->session->set_flashdata('error', 'Error deleting category.');

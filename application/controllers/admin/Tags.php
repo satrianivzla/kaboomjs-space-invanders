@@ -7,6 +7,7 @@ class Tags extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('tag_model');
+        $this->load->model('audit_model');
         $this->load->library('form_validation');
 
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
@@ -46,7 +47,9 @@ class Tags extends CI_Controller {
                 'name_es' => $this->input->post('name_es'),
                 'slug' => $slug
             ];
-            if ($this->tag_model->create_tag($data)) {
+            $tag_id = $this->tag_model->create_tag($data);
+            if ($tag_id) {
+                $this->audit_model->log_action('created_tag', $tag_id, 'Name: ' . $data['name_en']);
                 $this->session->set_flashdata('message', 'Tag created successfully.');
                 redirect('admin/tags');
             } else {
@@ -81,6 +84,7 @@ class Tags extends CI_Controller {
                 'slug' => $slug
             ];
             if ($this->tag_model->update_tag($id, $data)) {
+                $this->audit_model->log_action('updated_tag', $id, 'Name: ' . $data['name_en']);
                 $this->session->set_flashdata('message', 'Tag updated successfully.');
                 redirect('admin/tags');
             } else {
@@ -92,7 +96,9 @@ class Tags extends CI_Controller {
 
     public function delete($id)
     {
+        $tag = $this->tag_model->get_tag($id);
         if ($this->tag_model->delete_tag($id)) {
+            $this->audit_model->log_action('deleted_tag', $id, 'Name: ' . $tag['name_en']);
             $this->session->set_flashdata('message', 'Tag deleted successfully.');
         } else {
             $this->session->set_flashdata('error', 'Error deleting tag.');

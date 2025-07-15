@@ -65,7 +65,8 @@ $route['(en|es)'] = $route['default_controller'];
 */
 $route['auth'] = 'auth';
 $route['auth/(:any)'] = 'auth/$1';
-$route['admin'] = 'admin/posts'; // Default admin route
+$route['admin'] = 'admin/dashboard'; // Default admin route
+$route['admin/dashboard'] = 'admin/dashboard';
 $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 
